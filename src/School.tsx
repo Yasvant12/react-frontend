@@ -2,15 +2,20 @@ import React, { useState, useEffect } from 'react';
 import { Sparkles, BookOpen, Palette, Music, Star, Heart, Rocket, Users, Mail, Phone, MapPin, Menu, X } from 'lucide-react';
 
 export default function KidsSchoolLanding() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+const [scrolled, setScrolled] = useState<boolean>(false);
 
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+useEffect((): (() => void) => {
+  const handleScroll = (): void => {
+    setScrolled(window.scrollY > 50);
+  };
 
+  window.addEventListener('scroll', handleScroll);
+
+  return (): void => {
+    window.removeEventListener('scroll', handleScroll);
+  };
+}, []);
   const features = [
     { icon: BookOpen, title: "Creative Learning", desc: "Fun and engaging curriculum designed for young minds", color: "bg-pink-400" },
     { icon: Palette, title: "Arts & Crafts", desc: "Express creativity through painting, drawing, and crafts", color: "bg-purple-400" },
@@ -685,7 +690,6 @@ export default function KidsSchoolLanding() {
                 <div>
                   <textarea 
                     placeholder="Your Message" 
-                    rows="4" 
                     className="w-full px-4 py-3 rounded-2xl border-2 border-gray-200 focus:border-purple-500 outline-none text-gray-800 text-lg resize-none"
                   ></textarea>
                 </div>
@@ -853,30 +857,6 @@ export default function KidsSchoolLanding() {
           </div>
         </div>
       </footer>
-
-      <style jsx>{`
-        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap');
-        
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-          }
-          to {
-            opacity: 1;
-          }
-        }
-      `}</style>
     </div>
   );
 }
