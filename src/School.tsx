@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Sparkles, BookOpen, Palette, Music, Star, Heart, Rocket, Users, Mail, Phone, MapPin, Menu, X } from 'lucide-react';
 
 export default function KidsSchoolLanding() {
